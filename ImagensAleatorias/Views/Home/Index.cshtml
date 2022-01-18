@@ -1,0 +1,58 @@
+﻿@model IEnumerable<ImagensAleatorias.Postagem>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+<h2 class="text-center">Melhores cidade para se morar segundo as pesquisa!</h2>
+<br />
+
+<div class="container"  style="margin-top:10vh;">
+    <center>
+    <div id="myCarousel" class="carousel slide" data-ride="carousel"  style="width:40vw;">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            @foreach (var item in Model)
+            {
+                <li data-target="#myCarousel" data-slide-to="@Html.DisplayFor(modelItem => item.id)" class="indice_@Html.DisplayFor(modelItem => item.id)"></li>
+            }
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+            @foreach (var item in Model)
+            {
+                <div class="item" id="img_@Html.DisplayFor(modelItem =>item.id)">
+                    <img class="img img-responsive " src="~/Upload/@Html.DisplayFor(modelItem =>item.url)" style="width:40vw;">
+                    <div class="carousel-caption">
+                        <h3>@Html.DisplayFor(modelItem => item.titulo)</h3>
+                        <p>@Html.DisplayFor(modelItem => item.descricao)</p>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <!-- Left and right controls -->
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+    <br />
+
+    @if (Session["UsuarioCargo"] != null)
+    {
+        <div class="text-right">
+            @Html.ActionLink("Adicionar Nova Imagem ", "Add", "Home", new { @class = "btn btn-primary " })
+        </div>
+    }
+    </center>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $("#indice_3").addClass('active');
+    $("#img_3").addClass('active');
+</script>

@@ -1,0 +1,47 @@
+﻿@model IEnumerable<ImagensAleatorias.Postagem>
+
+@{
+    ViewBag.Title = "Listar";
+}
+
+<h2>Listar</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.url)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.titulo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.descricao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Usuario.usuario1)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <img src="~/Upload/@Html.DisplayFor(modelItem =>item.url)" class="img-responsive" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.titulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.descricao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Usuario.usuario1)
+            </td>
+            <td>
+                @Html.ActionLink("Detalhes", "Details", new { id = item.id }) 
+            </td>
+        </tr>
+    }
+
+</table>
